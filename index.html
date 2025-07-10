@@ -1,0 +1,552 @@
+<?php
+$page = "index.php";
+include("Admin/code2.php");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title><?php echo htmlspecialchars($page_title); ?></title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- meta title , meta desc , meta keyword -->
+    <meta name="keywords" content="<?php echo htmlspecialchars($MetaKey); ?>">
+    <meta name="description" content="<?php echo htmlspecialchars($MetaDesc); ?>">
+    <meta name="title" content="<?php echo htmlspecialchars($MetaTitle); ?>">
+    <!-- meta title , meta desc , meta keyword -->
+    <!-- Google Analytics  code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?php echo $analytics_code; ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', '<?php echo $analytics_code; ?>');
+    </script>
+   <!-- Google Analytics  code -->
+
+   <!-- canonical  -->
+   <link rel="canonical" href="<?= htmlspecialchars($canonical_url); ?>">
+   <!-- canonical  -->
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Roboto:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- Add site Favicon -->
+    <link rel="icon" href="img/AK-brown-logo.png" sizes="32x32" />
+    <link rel="icon" href="img/AK-brown-logo.png" sizes="192x192" />
+    <link rel="apple-touch-icon" href="img/AK-brown-logo.png" />
+    <meta name="msapplication-TileImage" content="img/AK-brown-logo.png" />
+
+    <style>
+        .gallery-container {
+            overflow: hidden;
+            background: #fff;
+            padding: 20px 0;
+            position: relative;
+            width: 100%;
+        }
+
+        .gallery-track {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 30s linear infinite;
+        }
+
+        .gallery-track img {
+            width: 300px;
+            height: 200px;
+            margin: 0 10px;
+            border-radius: 10px;
+            object-fit: cover;
+        }
+
+        @keyframes scroll-left {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+
+        .brands-section {
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .brands-section h2 {
+            color: red;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 25px;
+            justify-items: center;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .brands-grid img {
+            width: 100%;
+            max-width: 140px;
+            height: auto;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            transition: transform 0.3s;
+        }
+
+        .brands-grid img:hover {
+            transform: scale(1.05);
+        }
+
+        /* product start  */
+        .product-section {
+            text-align: center;
+            padding: 40px 20px;
+            background: #f9f9f9;
+        }
+
+        .section-title {
+            font-size: 28px;
+            color: red;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .product-box {
+            width: 200px;
+            background: #fff;
+            border: 1px solid transparent;
+            text-align: center;
+            padding: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .product-box:hover {
+            border: 1px solid red;
+        }
+
+        .product-box img {
+            width: 100%;
+            height: 150px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+
+        .product-box p {
+            font-weight: 500;
+            color: #000;
+        }
+
+        /* product end */
+    </style>
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner"
+        class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-light d-none d-lg-block">
+        <div class="row align-items-center top-bar">
+            <div class="col-lg-3 col-md-12 text-center text-lg-start">
+                <a href="index.php" class="navbar-brand m-0 p-0">
+                    <img src="img/w-logo.png" alt="Ak Logo" class="h-10"
+                        style="height: 115px; width: 151px; margin-top: -10px;" />
+                </a>
+            </div>
+            <div class="col-lg-9 col-md-12 text-end">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <i class="fa fa-map-marker-alt text-primary me-2"></i>
+                    <p class="m-0" style="color: red;">Near Puri cuttact bypass road,Bhubaneswar, Odisha 752104</p>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center me-4">
+                    <i class="fa fa-phone-alt text-primary me-2"></i>
+                    <a href="tel:+918637260625" class="text-inherit">8637260625</a>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+    <div class="container-fluid nav-bar bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
+            <a href="index.php" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
+                <img src="img/AK-brown-logo.png" alt="Ak Logo" class="h-10"
+                    style="height: 110px; width: 151px; margin-top: -10px;" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="fa fa-bars"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav me-auto">
+                    <a href="index.html" class="nav-item nav-link active">Home</a>
+                    <a href="about.html" class="nav-item nav-link">About</a>
+                    
+                    
+                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+
+                </div>
+                <div class="mt-4 mt-lg-0 me-lg-n4 py-3 px-4 bg-primary d-flex align-items-center">
+                    <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                        style="width: 45px; height: 45px;">
+                        <i class="fa fa-phone-alt text-primary"></i>
+                    </div>
+                    <div class="ms-3">
+                        <p class="mb-1 text-white">For More Details</p>
+                        <a href="tel:+919040200683" class="m-0 text-secondary">+91-9040200683</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/bg.png" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center"
+                    style="background: rgba(0, 0, 0, .4);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-10 col-lg-8">
+
+                                <h1 class="display-3 text-white animated slideInDown mb-4">Welcome to Jagannath Water Solution</h1>
+                                <p class="fs-5 fw-medium text-white mb-4 pb-2">Aquaguard – Pure water, trusted by Bhubaneswar, Odisha.
+                                   </p>
+                                <!-- <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Read More</a> -->
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid w-100 h-100" src="img/aqua.jpg" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                        <h5 class="text-truncate me-3 mb-0">Water Purifiers & Kitchen Solutions</h5>
+                        <!-- <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="overflow-hidden">
+                        <img class="img-fluid w-100 h-100" src="img/aqua1.jpg" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                        <h5 class="text-truncate me-3 mb-0">RO & UV Water System Repairs</h5>
+                        <!-- <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a> -->
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 service-item-top wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="overflow-hidden">
+                        <img style="height: 50%;" class="img-fluid w-100 h-100" src="img/aq4.png" alt="">
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between bg-light p-4">
+                        <h5 class="text-truncate me-3 mb-0">Tap & Filter Fittings Services</h5>
+                        <!-- <a class="btn btn-square btn-outline-primary border-2 border-white flex-shrink-0" href=""><i class="fa fa-arrow-right"></i></a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="text-secondary text-uppercase">About Us</h6>
+                    <h1 class="mb-4"> Your Trusted Partner for Water Purifier Services and Clean Water Solutions</h1>
+                    <p class="mb-4">We are proud to be recognized as a leading Aquaguard technician and water purifier service provider in Bhubaneswar, Odisha, offering expert solutions for both residential and commercial water purification needs. Whether you're looking for reliable Aquaguard repair services, installation, or genuine spare parts, AK Water Purifier Services is your go-to destination.</p>
+                    <P>OOur service offerings include:</P>
+                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Installation and servicing of Aquaguard, Kent, Pureit, and other leading brands</p>
+                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>RO, UV, and UF water purifier repair and maintenance</p>
+                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i> Filter, membrane, and cartridge replacement</p>
+                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i> Annual Maintenance Contracts (AMC) for hassle-free service</p>
+                    <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Leakage, low water flow, and tap issues – diagnosed and resolved quickly</p>
+                    <div class="bg-primary d-flex align-items-center p-4 mt-5">
+                        <div class="d-flex flex-shrink-0 align-items-center justify-content-center bg-white"
+                            style="width: 60px; height: 60px;">
+                            <i class="fa fa-phone-alt fa-2x text-primary"></i>
+                        </div>
+                        <div class="ms-3">
+                            <p class="fs-5 fw-medium mb-2 text-white">Contact Us</p>
+                            <h3 class="m-0 text-secondary">+91-9040200683</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 pt-4" style="min-height: 500px;">
+                    <div class="position-relative h-100 wow fadeInUp" data-wow-delay="0.5s">
+                        <img class="position-absolute img-fluid w-100 h-100" src="img/own.jpeg"
+                            style="object-fit: cover; padding: 0 0 50px 100px;" alt="">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+
+
+    <!-- gallery start -->
+
+    <div class="gallery-container">
+        <div class="gallery-track">
+            <!-- Set 1 -->
+            <img src="img/gallery/GALLERY10.png" alt="1">
+            <img src="img/gallery/GALLERY9.png" alt="2">
+            <img src="img/gallery/GALLERY8.png" alt="3">
+            <img src="img/gallery/GALLERY7.png" alt="4">
+            <img src="img/gallery/GALLERY6.png" alt="5">
+
+            <!-- Set 2 (duplicate for looping) -->
+            <img src="img/gallery/GALLERY10.png" alt="1">
+            <img src="img/gallery/GALLERY9.png" alt="2">
+            <img src="img/gallery/GALLERY8.png" alt="3">
+            <img src="img/gallery/GALLERY7.png" alt="4">
+            <img src="img/gallery/GALLERY6.png" alt="5">
+        </div>
+    </div>
+    <!-- gallery start -->
+
+    <!-- our brand  start-->
+    
+    <!-- our brand end -->
+
+    <!-- product start -->
+    
+
+    <!-- product end -->
+
+    <!-- Testimonial Start -->
+    <!-- Testimonial Start -->
+<div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container">
+        <div class="text-center">
+            <h6 class="text-secondary text-uppercase">Testimonial</h6>
+            <h1 class="mb-5">What Our Clients Say!</h1>
+        </div>
+        <div class="owl-carousel testimonial-carousel position-relative wow fadeInUp" data-wow-delay="0.1s">
+            <div class="testimonial-item text-center">
+                <div class="testimonial-text bg-light text-center p-4 mb-4">
+                    <p class="mb-0">Excellent Aquaguard service! My RO system is working like new again.</p>
+                </div>
+                <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/avatar-icon.jpg"
+                    style="width: 80px; height: 80px;">
+                <div class="mb-2">
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                </div>
+                <h5 class="mb-1">Sibajyoti Pradhan</h5>
+            </div>
+            <div class="testimonial-item text-center">
+                <div class="testimonial-text bg-light text-center p-4 mb-4">
+                    <p class="mb-0">Quick response and professional behavior. Highly recommended for water purifier repairs.</p>
+                </div>
+                <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/avatar-icon.jpg"
+                    style="width: 80px; height: 80px;">
+                <div class="mb-2">
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                </div>
+                <h5 class="mb-1">Kishen Kumar</h5>
+            </div>
+            <div class="testimonial-item text-center">
+                <div class="testimonial-text bg-light text-center p-4 mb-4">
+                    <p class="mb-0">The technician fixed my Aquaguard within an hour. Great service!</p>
+                </div>
+                <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/avatar-icon.jpg"
+                    style="width: 80px; height: 80px;">
+                <div class="mb-2">
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                </div>
+                <h5 class="mb-1">Ayan Banerjee</h5>
+            </div>
+            <div class="testimonial-item text-center">
+                <div class="testimonial-text bg-light text-center p-4 mb-4">
+                    <p class="mb-0">Affordable AMC plan and honest technicians. Totally satisfied with their service.</p>
+                </div>
+                <img class="bg-light rounded-circle p-2 mx-auto mb-2" src="img/avatar-icon.jpg"
+                    style="width: 80px; height: 80px;">
+                <div class="mb-2">
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                    <small class="fa fa-star text-secondary"></small>
+                </div>
+                <h5 class="mb-1">Rashmi Ranjan Behera</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial End -->
+
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <!-- Address -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Address</h4>
+                    <p class="mb-2" style=" font-size: 13px;"><i class="fa fa-map-marker-alt me-3"></i><a href="" style=" color: #fff;">Near Puri cuttact bypass road,Bhubaneswar, Odisha 752104</a></p>
+                    <a href="tel:+918637260625" class="mb-2" style="color: #fff;"><i
+                            class="fa fa-phone-alt me-3"></i>+91-8637260625</a><br>
+                    
+                
+                </div>
+
+                <!-- Opening Hours -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Opening Hours</h4>
+                    <h6 class="text-light">Monday - Saturday:</h6>
+                    <p class="mb-4">09.30 AM - 08.30 PM</p>
+                    <h6 class="text-light">Sunday</h6>
+                    <p class="mb-0">09.30 AM - 02.30 PM</p>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-light mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="index.html">Home</a>
+                    <a class="btn btn-link" href="index.html">About Us</a>
+                    <a class="btn btn-link" href="index.html">Contact</a>
+
+                   
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+    <div class="text-center mb-4">
+        <img src="img/logo.jpeg" alt="Company Logo" class="img-fluid" style="max-width: 170px;">
+    </div>
+</div>
+
+
+                <!-- Map -->
+                
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="index.html">2025 Jagannath Water Solutions </a>, All Copyright Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        Designed By <a class="border-bottom" href="">Monalisha</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-0 back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
